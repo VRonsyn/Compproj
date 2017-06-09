@@ -1,10 +1,7 @@
 /**{
     border: solid gray 1px;
 }*/
-html, body {
-    margin: 0;
-    padding: 0;
-}
+
 .Header{
     position: fixed;
     top: 0;
@@ -32,29 +29,24 @@ html, body {
 body{
     background-color: rgba(112, 185, 255, 0.36);
 }
-.Canvas {
-    margin: auto;
-    width: 65%;
-    padding: 10px;
+
+
+
+canvas {
+    background: #eeeeee;
     display: block;
-}
-
-
-#GameCanvas {
-    border: solid 2px whitesmoke;
-    background-image: url("http://4.bp.blogspot.com/-DolEbhJK2Ew/T2fdlTYiJZI/AAAAAAAAAOg/CPd4P1s069k/s1600/desert.jpg");
-    background-position: center;
-    position: absolute;
+    margin: 0 auto;
     top: 60px;
-    height: 529px;
+
+
 }
 
 p {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     background-color: white;
-    padding: 30px 10px 30px 10px;
-    border: 1px black solid;
+    padding: 20px 10px 20px 10px;
+    /*border: 0px black solid;*/
     display: block;
 }
 .Paragraph{
@@ -69,6 +61,7 @@ p {
 .btn-group .button {
     font-family: 'Roboto', sans-serif;
     background-color: transparent ;
+    color: white;
     padding: 16px;
     text-align: center;
     font-size: 16px;
@@ -85,8 +78,8 @@ p {
 
 .btn-group{
     position: absolute;
-    top:0%;
-    right:0%;
+    top:0;
+    right:0;
     left: 40%;;
     max-width:60%;
     height: auto;
