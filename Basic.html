@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> My Game</title>
+    <link rel="stylesheet" type="text/css" href="Normalize.css">
+    <link rel="stylesheet" type="text/css" href="Project-CSS.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon" href="https://maxcdn.icons8.com/Android_L/PNG/512/Objects/rocket-512.png">
+    <style>
+        canvas{
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+
+<!--HEADER-->
+<div class="Header">
+    <h1>This is my game</h1>
+
+    <div class="btn-group">
+        <button class="button">Button</button>
+        <button class="button">Button</button>
+        <button class="button">Button</button>
+        <button class="button">Button</button>
+    </div>
+
+</div>
+
+
+<canvas id="GameCanvas"></canvas>
+<script>
+
+    (function() {
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        window.requestAnimationFrame = requestAnimationFrame;
+    })();
+
+    var canvas = document.getElementById("GameCanvas"),
+            ctx = canvas.getContext("2d"),
+            width = 1200,
+            height = 529,
+            player = {
+                x : width/2,
+                y : height - 50,
+                width : 20,
+                height : 50,
+                speed: 3,
+                spdX: 0,
+                spdY: 0,
+                jumping: false
+            },
+            keys = [],
+            friction = 0.8,
+            gravity = 0.2;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    function update(){
+        // check keys
+        if (keys[38] || keys[32]) {
+            // up arrow or space
+            if(!player.jumping){
+                player.jumping = true;
+                player.spdY = -player.speed*2;
+            }
+        }
+        if (keys[39]) {
+            // right arrow
+            if (player.spdX < player.speed) {
+                player.spdX++;
+            }
+        }
+        if (keys[37]) {
+            // left arrow
+            if (player.spdX > -player.speed) {
+                player.spdX--;
+            }
+        }
+
+        player.spdX *= friction;
+
+        player.spdY += gravity;
+
+        player.x += player.spdX;
+        player.y += player.spdY;
+
+        if (player.x >= width-player.width) {
+            player.x = width-player.width;
+        } else if (player.x <= 0) {
+            player.x = 0;
+        }
+
+        if(player.y >= height-player.height){
+            player.y = height - player.height;
+            player.jumping = false;
+        }
+
+        ctx.clearRect(0,0,width,height);
+        ctx.fillStyle = "darksalmon";
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+
+        requestAnimationFrame(update);
+    }
+
+    document.body.addEventListener("keydown", function(e) {
+        keys[e.keyCode] = true;
+    });
+
+    document.body.addEventListener("keyup", function(e) {
+        keys[e.keyCode] = false;
+    });
+
+    window.addEventListener("load",function(){
+        update();
+    });
+    function Collision(P, O) {
+        var 
+        
+    }
+</script>
+
+
+
+<!--PARAGRAPHS-->
+<div class="Paragraph">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer nec sem lorem. Duis molestie venenatis lectus, vel venenatis lorem finibus quis.
+        Aliquam erat volutpat. Aenean magna purus, placerat eget bibendum tempus, viverra id erat.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Duis porttitor sodales nisi, non fringilla odio ultrices eget.
+        Nullam non lorem vitae ex fermentum semper.
+        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Cras a maximus erat. Donec faucibus eros tellus, sed aliquet neque egestas non.
+        Ut eu libero semper, porttitor quam non, fringilla elit.
+        Curabitur erat mi, hendrerit sed ante nec, pharetra semper nulla.
+    </p>
+    <p>
+        Nullam volutpat sapien sed porta fringilla.
+    </p>
+    <p>
+        Sed rutrum velit libero, a faucibus est blandit a.
+        Duis lorem eros, dictum at mauris ut, faucibus euismod justo.
+        Aenean imperdiet nulla sit amet diam mollis, vitae dapibus eros vehicula.
+        Vivamus eros mauris, tempor in quam id, aliquam varius urna.
+        Nullam eget molestie libero. Integer convallis fringilla porttitor.
+        Donec condimentum sagittis aliquet. Morbi eleifend lorem sed metus fringilla, vitae cursus dolor pretium.
+        Maecenas ornare sollicitudin augue a egestas. Nam dui dui, sollicitudin a volutpat a, condimentum id erat.
+        Maecenas congue felis nunc, eget faucibus ante feugiat vitae. In ac elit quis magna euismod lacinia.
+        Phasellus posuere rhoncus urna, eget posuere nisi posuere et. Donec in mauris odio.
+        Proin tempus efficitur tellus elementum blandit.
+
+        Donec fringilla porta ligula et aliquet.
+        Suspendisse semper venenatis volutpat.
+        Nullam sed congue magna.
+        Aenean lectus mauris, lobortis eu rhoncus vitae, sodales sed nisi.
+        ultrices ex nec hendrerit tempus. Aenean tempor neque ac tempus varius.
+        Donec urna est, cursus vel metus ac, rhoncus laoreet enim.
+        Suspendisse consequat eget urna id laoreet.
+        Vivamus commodo risus orci, eu luctus sapien venenatis vitae.
+    </p>
+    <p>
+        Suspendisse dictum risus libero, non pulvinar tortor fermentum vitae.
+        Aenean vel neque vel arcu cursus molestie quis vitae ligula.
+        Curabitur urna enim, gravida at facilisis vitae, facilisis sit amet nibh.
+        Cras maximus vitae ipsum a convallis.
+        Praesent consequat sem sed ante dapibus, ut ullamcorper risus molestie.
+        Ut vel purus maximus, pretium est sit amet, mattis nisl.
+        Vivamus facilisis porta vehicula. Sed in tortor ipsum.
+    </p>
+    <p>
+        Phasellus non scelerisque ante, cursus efficitur massa.
+        Cras eu risus nec purus pharetra elementum.
+        Ut eu orci eget nibh elementum bibendum.
+        Nulla ac libero et eros consectetur sodales.
+        Curabitur ornare ex non suscipit suscipit.
+        Maecenas pellentesque odio ipsum, vehicula sagittis augue laoreet vel.
+        Integer viverra fermentum suscipit. Donec efficitur nulla libero, eu posuere eros luctus id.
+        Fusce feugiat, orci non sodales laoreet, eros odio ultrices ligula, sit amet molestie dolor ligula quis nibh.
+        Nullam egestas imperdiet sem, sit amet vehicula tortor porttitor sed.
+        Pellentesque eleifend lacus bibendum, viverra ante ac, tincidunt felis.
+        Curabitur semper libero sit amet ligula efficitur malesuada.
+        Duis tempor congue sapien, non aliquam lorem consequat id.
+        Morbi id purus ac tellus semper ornare quis ut tortor.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer nec sem lorem. Duis molestie venenatis lectus, vel venenatis lorem finibus quis.
+        Aliquam erat volutpat. Aenean magna purus, placerat eget bibendum tempus, viverra id erat.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Duis porttitor sodales nisi, non fringilla odio ultrices eget.
+        Nullam non lorem vitae ex fermentum semper.
+        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        Cras a maximus erat. Donec faucibus eros tellus, sed aliquet neque egestas non.
+        Ut eu libero semper, porttitor quam non, fringilla elit.
+        Curabitur erat mi, hendrerit sed ante nec, pharetra semper nulla.
+    </p>
+    <p>
+        Nullam volutpat sapien sed porta fringilla.
+    </p>
+    <p>
+        Sed rutrum velit libero, a faucibus est blandit a.
+        Duis lorem eros, dictum at mauris ut, faucibus euismod justo.
+        Aenean imperdiet nulla sit amet diam mollis, vitae dapibus eros vehicula.
+        Vivamus eros mauris, tempor in quam id, aliquam varius urna.
+        Nullam eget molestie libero. Integer convallis fringilla porttitor.
+        Donec condimentum sagittis aliquet. Morbi eleifend lorem sed metus fringilla, vitae cursus dolor pretium.
+        Maecenas ornare sollicitudin augue a egestas. Nam dui dui, sollicitudin a volutpat a, condimentum id erat.
+        Maecenas congue felis nunc, eget faucibus ante feugiat vitae. In ac elit quis magna euismod lacinia.
+        Phasellus posuere rhoncus urna, eget posuere nisi posuere et. Donec in mauris odio.
+        Proin tempus efficitur tellus elementum blandit.
+
+        Donec fringilla porta ligula et aliquet.
+        Suspendisse semper venenatis volutpat.
+        Nullam sed congue magna.
+        Aenean lectus mauris, lobortis eu rhoncus vitae, sodales sed nisi.
+        ultrices ex nec hendrerit tempus. Aenean tempor neque ac tempus varius.
+        Donec urna est, cursus vel metus ac, rhoncus laoreet enim.
+        Suspendisse consequat eget urna id laoreet.
+        Vivamus commodo risus orci, eu luctus sapien venenatis vitae.
+    </p>
+    <p>
+        Suspendisse dictum risus libero, non pulvinar tortor fermentum vitae.
+        Aenean vel neque vel arcu cursus molestie quis vitae ligula.
+        Curabitur urna enim, gravida at facilisis vitae, facilisis sit amet nibh.
+        Cras maximus vitae ipsum a convallis.
+        Praesent consequat sem sed ante dapibus, ut ullamcorper risus molestie.
+        Ut vel purus maximus, pretium est sit amet, mattis nisl.
+        Vivamus facilisis porta vehicula. Sed in tortor ipsum.
+    </p>
+    <p>
+        Phasellus non scelerisque ante, cursus efficitur massa.
+        Cras eu risus nec purus pharetra elementum.
+        Ut eu orci eget nibh elementum bibendum.
+        Nulla ac libero et eros consectetur sodales.
+        Curabitur ornare ex non suscipit suscipit.
+        Maecenas pellentesque odio ipsum, vehicula sagittis augue laoreet vel.
+        Integer viverra fermentum suscipit. Donec efficitur nulla libero, eu posuere eros luctus id.
+        Fusce feugiat, orci non sodales laoreet, eros odio ultrices ligula, sit amet molestie dolor ligula quis nibh.
+        Nullam egestas imperdiet sem, sit amet vehicula tortor porttitor sed.
+        Pellentesque eleifend lacus bibendum, viverra ante ac, tincidunt felis.
+        Curabitur semper libero sit amet ligula efficitur malesuada.
+        Duis tempor congue sapien, non aliquam lorem consequat id.
+        Morbi id purus ac tellus semper ornare quis ut tortor.
+    </p>
+</div>
+
+
+
+
+
+</body>
+</html>
